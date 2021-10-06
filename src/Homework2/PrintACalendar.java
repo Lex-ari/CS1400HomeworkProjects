@@ -12,6 +12,7 @@ public class PrintACalendar {
     private static int numDays = 0;
     private static final int DAYS_OF_WEEK = 0;
     private static int startingDay = -1; //Sunday starts at 0, Saturday is 6
+    private static int[] spacing = new int[7];
 
     public static void main(String[] args){
         getUserInput();
