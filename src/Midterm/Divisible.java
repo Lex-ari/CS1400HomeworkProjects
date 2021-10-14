@@ -16,6 +16,7 @@ public class Divisible {
         cleanDivisibleOperation();
     }
 
+    // Lets user input 2 integers
     private static void getUserNumbers(){
         System.out.println("Enter 1st integer");
         while (true){
@@ -37,17 +38,19 @@ public class Divisible {
                 userInput.nextLine();
             }
         }
-        System.out.println("Selected Inputs: " + firstNum + " " + secondNum);
+        System.out.println("Selected Inputs: " + firstNum + ", " + secondNum);
     }
 
+    //Calculates if the first integer is divisible by second integer
     private static void cleanDivisibleOperation(){
         if (secondNum == 0){ //Note: Be sure to handle div by 0.
             System.out.println("Can't divide by 0");
         }
         if (firstNum % secondNum == 0){ // cleanly divisble
-            System.out.println(firstNum + " is evenly divisible by " + secondNum + " with 0 remainder.");
+            System.out.println(firstNum + " is evenly divisible by " + secondNum);
+            System.out.println("nice :)");
         } else {
-            System.out.println(firstNum + " is divisible by " + secondNum + " with " + firstNum % secondNum + " remainder.");
+            System.out.println(firstNum + " is not evenly divisible by " + secondNum + " with " + firstNum % secondNum + " remainder.");
         }
     }
 

@@ -12,17 +12,18 @@ public class Sales {
     private static File myFile = new File("sales.txt");
 
     public static void main(String[] args) throws IOException {
-        chooseOption();
+        runSaleTerminal();
     }
 
-    private static void chooseOption() throws IOException {
+    // Lets user decide what they'd like to do
+    private static void runSaleTerminal() throws IOException {
         while(true){
             System.out.println("Admin: Please type in action: add, printSales, printTotal, quit");
             switch(userInput.nextLine().toLowerCase()){
-                case "add" -> addSales();
-                case "printsales" -> printSales();
-                case "printtotal" -> printTotal();
-                case "quit" -> {
+                case "add", "add sale", "addsale" -> addSales();
+                case "printsales", "print sales", "sales" -> printSales();
+                case "printtotal", "print total", "total" -> printTotal();
+                case "quit", "terminate", "exit" -> {
                     System.out.println("Thank you for using Alex's Sales Terminal");
                     System.exit(0);
                 }
@@ -43,20 +44,22 @@ public class Sales {
         boolean allSalesCompleted = false;
         do { // loop to continuously add sales
             do { // loop to fix current sale
-                while (true) {
-                    System.out.println("Enter the sale amount");
+                while (true) { // loop to enter current sale.
+                    System.out.println("Please enter the sale amount");
                     if (userInput.hasNextDouble()) {
                         newSale = userInput.nextDouble();
-                        if (newSale % 0.01 < 0.01){
-                            System.out.println("Caution: Sale will be rounded down to 100th's place");
-                            newSale = (int)(newSale / 0.01) * 0.01;
+                        // Testing: System.out.println(newSale  * 100 % 1);
+                        if ((newSale * 100)% 1 > 0){
+                            System.out.println("Caution: Sale will be rounded DOWN to 100th's place!!");
+                            newSale = (int)(newSale * 100) * 0.01;
                         }
                         break;
                     } else {
-                        System.out.println("Unexpected input.");
+                        System.out.println("Unexpected input. Please enter a sale in the format of 000.00 without a '$' symbol.");
+                        userInput.nextLine();
                     }
                 }
-                do {
+                do { // loop to confirm current sale
                     receivedInProperInput = false;
                     System.out.printf("New Current Sale: %.2f%n", newSale);
                     System.out.println("Is this sale correct? Y/N");
@@ -73,13 +76,13 @@ public class Sales {
             } while (!saleCompleted);
             outputFile.println(newSale);
             System.out.println("Successfully added new sale: " + newSale);
-            do {
+            do { // loop to ask user if they'd like to add another sale
                 receivedInProperInput = false;
                 System.out.println("Add new sale? Y/N");
                 switch (userInput.nextLine().toLowerCase()) {
                     case "y", "yes", "true" -> {} //do nothing
                     case "n", "no", "false" -> {
-                        System.out.println("Terminating current process...");
+                        System.out.println("Terminating addSales process...");
                         allSalesCompleted = true;
                     }
                     default -> {
@@ -91,23 +94,39 @@ public class Sales {
         } while (!allSalesCompleted);
         outputFile.close();
     }
+
+    //Loops through sales.txt and prints all sales.
     private static void printSales() throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(myFile);
-        System.out.println("PrintSales Selected");
-        while (fileScanner.hasNextDouble()){
-            System.out.printf("%.2f%n", fileScanner.nextDouble());
+        if (myFile.exists()) {
+            Scanner fileScanner = new Scanner(myFile);
+            System.out.println("PrintSales Selected");
+            while (fileScanner.hasNextDouble()) {
+                System.out.printf("$%.2f%n", fileScanner.nextDouble());
+            }
+            System.out.println("End Of Sales");
+
+        } else {
+            System.out.println("Error: Sales.txt file does not exist!");
+            System.out.println("Please add a sale in order to create it.");
         }
-        System.out.println("End Of Sales");
         System.out.println();
     }
+
+    //loops sales.txt and adds up numbers
     private static void printTotal() throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(myFile);
-        System.out.println("PrintTotal Selected");
-        double total = 0.0;
-        while (fileScanner.hasNextDouble()){
-            total += fileScanner.nextDouble();
+        if (myFile.exists()) {
+            Scanner fileScanner = new Scanner(myFile);
+            System.out.println("PrintTotal Selected");
+            double total = 0.0;
+            while (fileScanner.hasNextDouble()) {
+                total += fileScanner.nextDouble();
+            }
+            System.out.printf("Total Sales: $%.2f%n", total);
+            System.out.println();
+        } else {
+            System.out.println("Error: Sales.txt file does not exist!");
+            System.out.println("Please add a sale in order to create it.");
         }
-        System.out.printf("Total Sales: $%.2f%n", total);
         System.out.println();
     }
 }
