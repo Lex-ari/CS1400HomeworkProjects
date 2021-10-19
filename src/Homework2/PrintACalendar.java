@@ -124,7 +124,7 @@ public class PrintACalendar {
             //numDays = 14, testNumber = 8
             //numDays = 15, testNumber = 15
 
-            int testNumber = (numDays + startingDay - 1)/ 7 * 7 + x - startingDay + 1; // calculates the last week's value
+            int testNumber = (numDays + startingDay - 1)/ 7 * 7 + x - startingDay + 1; // calculates the last week's value for each day
             if (testNumber > numDays){
                 testNumber -= 7;
             }

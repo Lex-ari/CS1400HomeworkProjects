@@ -40,7 +40,7 @@ public class Sales {
         PrintWriter outputFile = new PrintWriter(fWriter);
         double newSale = 0.0;
         boolean saleCompleted = false;
-        boolean receivedInProperInput = false;
+        boolean receivedImproperInput = false;
         boolean allSalesCompleted = false;
         do { // loop to continuously add sales
             do { // loop to fix current sale
@@ -60,7 +60,7 @@ public class Sales {
                     }
                 }
                 do { // loop to confirm current sale
-                    receivedInProperInput = false;
+                    receivedImproperInput = false;
                     System.out.printf("New Current Sale: %.2f%n", newSale);
                     System.out.println("Is this sale correct? Y/N");
                     userInput.nextLine();
@@ -69,15 +69,15 @@ public class Sales {
                         case "n", "no", "false" -> System.out.println("Restarting process");
                         default -> {
                             System.out.println("Unexpected input, please try again");
-                            receivedInProperInput = true;
+                            receivedImproperInput = true;
                         }
                     }
-                } while (receivedInProperInput);
+                } while (receivedImproperInput);
             } while (!saleCompleted);
             outputFile.println(newSale);
             System.out.println("Successfully added new sale: " + newSale);
             do { // loop to ask user if they'd like to add another sale
-                receivedInProperInput = false;
+                receivedImproperInput = false;
                 System.out.println("Add new sale? Y/N");
                 switch (userInput.nextLine().toLowerCase()) {
                     case "y", "yes", "true" -> {} //do nothing
@@ -87,10 +87,10 @@ public class Sales {
                     }
                     default -> {
                         System.out.println("Unexpected input, please try again");
-                        receivedInProperInput = true;
+                        receivedImproperInput = true;
                     }
                 }
-            } while (receivedInProperInput);
+            } while (receivedImproperInput);
         } while (!allSalesCompleted);
         outputFile.close();
     }
@@ -122,7 +122,6 @@ public class Sales {
                 total += fileScanner.nextDouble();
             }
             System.out.printf("Total Sales: $%.2f%n", total);
-            System.out.println();
         } else {
             System.out.println("Error: Sales.txt file does not exist!");
             System.out.println("Please add a sale in order to create it.");

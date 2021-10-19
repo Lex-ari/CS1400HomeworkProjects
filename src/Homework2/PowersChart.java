@@ -7,7 +7,7 @@ package Homework2;
 import java.util.Arrays;
 
 public class PowersChart {
-    private static int[][] powerArray = new int[20][20];//row, col
+    private static int[][] powerArray = new int[10][4];//row, col
     private static int[] spacing = new int[powerArray[0].length];
 
 
