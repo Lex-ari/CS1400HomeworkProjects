@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class NimRecursive2 {
 
-    private static int count = 10;
+    private static int count = 50;
     private static Scanner userInput = new Scanner(System.in);
     private static int[] truthValues;
 
@@ -95,7 +95,7 @@ public class NimRecursive2 {
             return isComputer;
         } else if(truthValues[a-1] == 2){
             //System.out.println(a + " is not a safe number! isComputer: " + isComputer);
-            return false;
+            return !isComputer;
         }
         for (int i = 1; i <= a/2; i++){ //Cycle through possible subtractions starting from 1.
             boolean tempResult = isForcibleWinPathRec(a-i, !isComputer);
@@ -104,18 +104,17 @@ public class NimRecursive2 {
                 System.out.println("I found that " + a + " is a safe number! isComputer: " + isComputer);
                 return true; // Computer's turn, found a path that lets the computer win.
             } else if(!isComputer && !tempResult){
-                truthValues[a-1] = 2;
-                System.out.println("I found that " + a + " is a NOT safe number! isComputer: " + isComputer);
+                truthValues[a-1] = 1;
                 return false; // Player's turn, found a path that lets the player win.
             }
         }
         //Computer's turn, no paths let the computer win --> Return False;
         //Player's turn, the computer wins all paths. --> Return true
         if (isComputer) {
-            truthValues[a-1] = 1;
+            truthValues[a-1] = 2;
             return false;
         }
-        truthValues[a-1] = 2;
+        truthValues[a-1] = 1;
         return true;
     }
 }
