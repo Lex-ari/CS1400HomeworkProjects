@@ -5,18 +5,24 @@ import java.util.Scanner;
 // CS 1400
 // Professor David Johannsen
 
-public class DoctorNim {
+public class Nim {
 
     private static int count = 0;
     private static Scanner userInput = new Scanner(System.in);
 
 
     public static void main(String[] args){
-        count = (int)(Math.random() * 91) + 10;
+        /*count = (int)(Math.random() * 91) + 10;
         System.out.println("The number of marbles in this game is: " + count);
         while (true){
             getUserTurn();
             System.out.println(count);
+        }
+
+         */
+
+        while (true){
+            System.out.println(isForcibleWinPath(userInput.nextInt(), true));
         }
     }
 
@@ -41,7 +47,7 @@ public class DoctorNim {
             }
         } while (!properInput);
     }
-
+    /*
     private static void makeTheUserSuffer(){
         if (count > 7 && count <= 14)
 
@@ -52,15 +58,33 @@ public class DoctorNim {
             case 6 -> count -= 3;
             default -> count--;
         }
+    }*/
+
+
+    //this method works with isForcibleWinPath
+    //Uses the recursion to figure out how many to take to get a forced win.
+    private static int isForcibleWinGrab(int a){
+        return 0;
     }
 
     //recursion time
-    private static boolean isForcibleWinPath(int a){ // the first call of this will assume that the computer is asking
+    //this method is to test a value and see if it has a winning position.
+    //if the player has any winning positions, then it should return false (since the player can manipulate a forced win)
+    //from above, if the computer has any winning positions, then it should return true.
+
+    //define some terms
+    // a forced win is where exists one path where no matter the player's input, the computer can win.
+    //
+
+
+    private static boolean isForcibleWinPath(int a, boolean isComputer){ // the first call of this will assume that the computer is asking
         //need to find a path where
-        for (int i = a - 1; i > 1; i--){
-            isForcibleWinPath(i); // this is going to flip with possible inputs from both computer and user
+        for (int i = 1; i < a/2; i++){
+            if (isForcibleWinPath(a - i, !isComputer)){
+                return isComputer;
+            }
         }
-        return true;
+        return false;
     }
 
     /* Notes
@@ -70,7 +94,7 @@ public class DoctorNim {
     Turn, Count
     Computer, 2 --> Player, 1, WIN (forced)
     Computer, 3 --> Player, 2 --> Computer, 1, LOOSE
-    Computer, 4 --> Player, 3 --> Computer, 2 --> WIN
+    Computer, 4 --> Player, 3 --> Computer, 2 --> WINk
     Computer, 4 --> Player, 2 --> Computer, 1, LOOSE
         If count 4, best move is to take 1.
         Winning numbers: 2, 4
