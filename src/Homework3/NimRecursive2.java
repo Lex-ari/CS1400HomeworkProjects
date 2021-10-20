@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class NimRecursive2 {
 
-    private static int count = 50;
+    private static int count = 100;
     private static Scanner userInput = new Scanner(System.in);
     private static int[] truthValues;
 
     public static void main(String[] args){
-        //count = (int)(Math.random() * 91) + 10;
+        count = (int)(Math.random() * 91) + 10;
         truthValues = new int[count];
         truthValues[0] = 2;
         System.out.println("The number of marbles in this game is: " + count);
@@ -24,7 +24,11 @@ public class NimRecursive2 {
                 System.exit(0);
             }
             makeTheUserSuffer();
-            System.out.println(Arrays.toString(truthValues));
+            for (int i = 0; i < count; i++){
+                System.out.printf(" %2d,", truthValues[i]);
+            }
+            System.out.println();
+            printNumbers();
         }
     }
 
@@ -75,7 +79,7 @@ public class NimRecursive2 {
                 return i;
             }
         }
-        return 1; //essentially, player can force win, but just remove 1 in hopes that they will fail.
+        return (int)(Math.random() * count/2); //essentially, player can force win, but just remove 1 in hopes that they will fail.
     }
 
     //Recursion because it is fun.
@@ -101,7 +105,6 @@ public class NimRecursive2 {
             boolean tempResult = isForcibleWinPathRec(a-i, !isComputer);
             if (isComputer && tempResult) {
                 truthValues[a-1] = 1;
-                System.out.println("I found that " + a + " is a safe number! isComputer: " + isComputer);
                 return true; // Computer's turn, found a path that lets the computer win.
             } else if(!isComputer && !tempResult){
                 truthValues[a-1] = 1;
@@ -116,5 +119,12 @@ public class NimRecursive2 {
         }
         truthValues[a-1] = 1;
         return true;
+    }
+
+    private static void printNumbers(){
+        for (int i = 1; i <= count; i++){
+            System.out.printf(" %2d,", i);
+        }
+        System.out.println();
     }
 }
