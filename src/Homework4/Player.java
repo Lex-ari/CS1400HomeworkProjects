@@ -18,7 +18,7 @@ public class Player {
         id = (int)Math.random()*10000; // random id number from 0 to 9999
     }
 
-    public Player(Object playerObject) throws Exception {
+    public Player(Object playerObject) throws Exception { // copy constructor
         if (playerObject == null || playerObject.getClass() != this.getClass()){
             throw new Exception("Object in player copy constructor is not a player object");
         }
@@ -30,9 +30,74 @@ public class Player {
         count++;
     }
 
+    public void setExperience(int experience){
+        this.experience = experience;
+    }
+
+    public int getExperience(){
+        return experience;
+    }
+
+    public void setStats(Stats stats){
+        if (stats == null){
+            throw new NullPointerException();
+        }
+        this.stats = new Stats(stats);
+    }
+
+    public Stats getStats(){
+      return new Stats(stats);
+    }
+
+    public void setStatus(Status status){
+        if (status == null){
+            throw new NullPointerException();
+        }
+        this.status = new Status(status);
+    }
+
+    public Status getStatus(){
+        return new Status(status);
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int a){
+        id = a;
+        if (id >= 10000){
+            id = 9999;
+        }
+        if (id < 0){
+            id = 0;
+        }
+    }
+
+    public void addExperience(int newExperience){
+        experience += newExperience;
+        if (experience > 1000){
+            experience = 1000;
+        }
+    }
+
+    public static int getNumberOfPlayers(){
+        return count;
+    }
+
+
+
     @Override
     public String toString(){
-        return "name:" + name + " experience:" + experience + " stats:(" + stats.toString() + ") status:(" + status.toString() + ") id:" + id;
+        return "Name:" + name + "\nExperience:" + experience + "\nSTATS\n" + stats.toString() + "\nSTATUS\n" + status.toString() + "\nId:" + id + "\n";
     }
 
     @Override

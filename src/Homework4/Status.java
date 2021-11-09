@@ -14,6 +14,9 @@ public class Status {
     }
 
     public Status(Status statusObject){
+        if (statusObject == null){
+            throw new NullPointerException();
+        }
         hitPoints = statusObject.hitPoints;
         hunger = statusObject.hunger;
         sleepiness = statusObject.sleepiness;
@@ -55,7 +58,7 @@ public class Status {
 
     @Override
     public String toString(){
-        return "hitPoints:" + hitPoints + " hunger:" + hunger + " sleepiness:" + sleepiness;
+        return "HitPoints:" + hitPoints + "\nHunger:" + hunger + "\nSleepiness:" + sleepiness;
     }
 
     @Override

@@ -14,6 +14,9 @@ public class Stats {
     }
 
     public Stats(Stats statsObject){
+        if (statsObject == null){
+            throw new NullPointerException();
+        }
         strength = statsObject.strength;
         intelligence = statsObject.intelligence;
         stamina = statsObject.stamina;
@@ -71,6 +74,6 @@ public class Stats {
 
     @Override
     public String toString(){
-        return "strength:" + strength + " intelligence:" + intelligence + " stamina:"  + stamina;
+        return "Strength:" + strength + "\nIntelligence:" + intelligence + "\nStamina:"  + stamina;
     }
 }
