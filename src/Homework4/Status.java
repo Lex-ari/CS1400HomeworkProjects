@@ -1,5 +1,10 @@
 package Homework4;
 
+// Code by Alex Mariano
+// CS 1400
+// Professor David Johannsen
+
+
 public class Status {
 
     private int hitPoints; // 0 - 25
@@ -58,15 +63,15 @@ public class Status {
 
     @Override
     public String toString(){
-        return "HitPoints:" + hitPoints + "\nHunger:" + hunger + "\nSleepiness:" + sleepiness;
+        return "HitPoints:" + hitPoints + ", Hunger:" + hunger + ", Sleepiness:" + sleepiness;
     }
 
     @Override
     public boolean equals(Object other){
-        if (other == null || getClass() != other.getClass()){
+        if (other == null || Status.class != other.getClass()){
             return false;
         } else {
-            if (hitPoints == ((Status) other).hitPoints && hunger == ((Status) other).hunger && sleepiness == ((Status) other).sleepiness){
+            if (hitPoints == ((Status) other).getHitPoints() && hunger == ((Status) other).getHunger() && sleepiness == ((Status) other).getSleepiness()){
                 return true;
             }
             return false;

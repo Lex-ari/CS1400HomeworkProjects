@@ -6,4 +6,15 @@ public class Sand extends Terrain{
     private double waterCost = 1.5;
     private double staminaCost = 1.5;
 
+    @Override
+    public double getWaterCost(){
+        return waterCost;
+    }
+
+    @Override
+    public double getStaminaCost(){
+        return staminaCost;
+    }
+
+
 }

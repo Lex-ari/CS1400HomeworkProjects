@@ -1,5 +1,10 @@
 package Homework4;
 
+// Code by Alex Mariano
+// CS 1400
+// Professor David Johannsen
+
+
 public class Stats {
 
     private int strength; // 1 - 12
@@ -36,7 +41,7 @@ public class Stats {
 
     public void moveStaminaToStrength(int amount) throws Exception {
         stamina -= amount;
-        intelligence += amount;
+        strength += amount;
         checkValidity();
     }
 
@@ -60,12 +65,16 @@ public class Stats {
 
     }
 
+    public int getStrength(){return strength;}
+    public int getIntelligence(){return intelligence;}
+    public int getStamina(){return stamina;}
+
     @Override
     public boolean equals(Object other){
-        if (other == null || getClass() != other.getClass()){
+        if (other == null || Stats.class != other.getClass()){
             return false;
         } else {
-            if (strength == ((Stats) other).strength && intelligence == ((Stats) other).intelligence && stamina == ((Stats) other).stamina){
+            if (strength == ((Stats) other).getStrength() && intelligence == ((Stats) other).getIntelligence() && stamina == ((Stats) other).getStamina()){
                 return true;
             }
             return false;
@@ -74,6 +83,6 @@ public class Stats {
 
     @Override
     public String toString(){
-        return "Strength:" + strength + "\nIntelligence:" + intelligence + "\nStamina:"  + stamina;
+        return "Strength:" + strength + ", Intelligence:" + intelligence + ", Stamina:"  + stamina;
     }
 }

@@ -1,5 +1,10 @@
 package Homework4;
 
+// Code by Alex Mariano
+// CS 1400
+// Professor David Johannsen
+
+
 public class Player {
 
     private String name;
@@ -15,18 +20,18 @@ public class Player {
         this.stats = new Stats(stats);
         this.status = new Status(status);
         count++;
-        id = (int)Math.random()*10000; // random id number from 0 to 9999
+        id = (int)(Math.random()*10000); // random id number from 0 to 9999
     }
 
     public Player(Object playerObject) throws Exception { // copy constructor
-        if (playerObject == null || playerObject.getClass() != this.getClass()){
+        if (playerObject == null || Player.class != playerObject.getClass()){
             throw new Exception("Object in player copy constructor is not a player object");
         }
-        name = ((Player) playerObject).name;
-        experience = ((Player) playerObject).experience;
-        stats = new Stats(((Player) playerObject).stats);
-        status = new Status(((Player) playerObject).status);
-        id = ((Player) playerObject).id;
+        name = ((Player) playerObject).getName();
+        experience = ((Player) playerObject).getExperience();
+        stats = new Stats(((Player) playerObject).getStats());
+        status = new Status(((Player) playerObject).getStatus());
+        id = ((Player) playerObject).getId();
         count++;
     }
 
@@ -97,15 +102,15 @@ public class Player {
 
     @Override
     public String toString(){
-        return "Name:" + name + "\nExperience:" + experience + "\nSTATS\n" + stats.toString() + "\nSTATUS\n" + status.toString() + "\nId:" + id + "\n";
+        return "Name:" + name + "\nExperience:" + experience + "\nId:" + id + "\nSTATS: " + stats.toString() + "\nSTATUS: " + status.toString() + "\n";
     }
 
     @Override
     public boolean equals(Object other){
-        if (other == null || getClass() != other.getClass()){
+        if (other == null || Player.class != other.getClass()){
             return false;
         } else {
-            if (name == ((Player) other).name && experience == ((Player) other).experience && stats.equals(stats) && status.equals(status) && id == ((Player) other).id){
+            if (name == ((Player) other).getName() && experience == ((Player) other).getExperience() && ((Player) other).getStats().equals(stats) && ((Player) other).getStatus().equals(status) && id == ((Player) other).getId()){
                 return true;
             }
             return false;

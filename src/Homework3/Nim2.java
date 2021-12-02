@@ -27,7 +27,7 @@ public class Nim2 {
     private static void getUserTurn(){
         boolean properInput;
         do {
-            System.out.println("Please enter the number of marbles you wish to take away.");
+            System.out.println("Please enter the number of marbles you wish to take away (1 - " + count/2 + ").");
             properInput = true;
             if (userInput.hasNextInt()) {
                 int userChosenMarbles = userInput.nextInt();
@@ -47,8 +47,8 @@ public class Nim2 {
             }
             if (!properInput){
                 System.out.println("Unexpected user input. Acceptable values: 1 - " + (count / 2) + ".");
-                userInput.nextLine();
             }
+            userInput.nextLine();
         } while (!properInput);
     }
 
@@ -76,7 +76,7 @@ public class Nim2 {
             System.out.println("The computer chooses to remove " + numToRemove + " marbles.");
         }
         count -= numToRemove;
-        System.out.println("The count is now " + count + " marbles");
+        System.out.println("The count is now " + count + " marbles.");
         if(count == 0){
             System.out.println("The computer is defeated. Was it strategy or luck?");
             System.exit(0);

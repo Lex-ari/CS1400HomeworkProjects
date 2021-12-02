@@ -17,6 +17,12 @@ public class Player {
         this.staminaSupply = staminaSupply;
     }
 
+    public Player(){
+        foodSupply = 20;
+        waterSupply = 20;
+        staminaSupply = 20;
+    }
+
     public boolean enter(Terrain terrain){
         double food = terrain.getFoodCost();
         if (food > 0.0) {

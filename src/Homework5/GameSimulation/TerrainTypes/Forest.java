@@ -6,4 +6,8 @@ public class Forest extends Terrain {
     private double waterCost = 1.0;
     private double staminaCost = 2.0;
 
+    @Override
+    public double getStaminaCost(){
+        return staminaCost;
+    }
 }
