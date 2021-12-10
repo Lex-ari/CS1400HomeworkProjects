@@ -17,4 +17,8 @@ public class Terrain {
         return staminaCost;
     }
 
+    @Override
+    public String toString(){
+        return "Default Terrain";
+    }
 }

@@ -1,16 +1,30 @@
 package Homework5.GameSimulation;
 
-import Homework5.GameSimulation.GameControl.Brain;
-import Homework5.GameSimulation.GameControl.TwoBrainCellsBrain;
-import Homework5.GameSimulation.TerrainTypes.River;
-import Homework5.GameSimulation.TerrainTypes.Terrain;
+import Homework5.GameSimulation.GameControl.*;
+import Homework5.GameSimulation.PlayerTypes.Player;
+import Homework5.GameSimulation.TerrainTypes.*;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
+        Map gameMap = new Map();
+        gameMap.initializeMap();
+        Brain firstPlayer = new TwoBrainCellsBrain();
+        firstPlayer.setPlayerType(new Player());
+        firstPlayer.setMap(gameMap);
+        System.out.println(firstPlayer.toString());
 
-        Terrain river = new River();
-        System.out.println(river.getWaterCost());
+        //firstPlayer.move();
+        //System.out.println(firstPlayer.toString());
+
+        for (int a = 0; a < 55; a++){
+            try{
+                firstPlayer.move();
+            }
+            catch (Exception e){
+                // Do nothing.
+            }
+        }
     }
 
 }

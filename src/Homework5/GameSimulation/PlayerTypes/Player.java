@@ -1,5 +1,7 @@
 package Homework5.GameSimulation.PlayerTypes;
 
+import Homework4.Stats;
+import Homework4.Status;
 import Homework5.GameSimulation.TerrainTypes.*;
 
 public class Player {
@@ -21,6 +23,18 @@ public class Player {
         foodSupply = 20;
         waterSupply = 20;
         staminaSupply = 20;
+    }
+
+    public Player(Object playerObject) throws Exception { // copy constructor
+        if (playerObject == null || Homework5.GameSimulation.PlayerTypes.Player.class != playerObject.getClass()){
+            throw new Exception("Object in player copy constructor is not a player object");
+        }
+        this.foodSupply = ((Player) playerObject).getFoodSupply();
+        this.foodFactor = ((Player) playerObject).getFoodFactor();
+        this.waterSupply = ((Player) playerObject).getWaterSupply();
+        this.waterFactor = ((Player) playerObject).getWaterFactor();
+        this.staminaSupply = ((Player) playerObject).getStaminaSupply();
+        this.staminaFactor = ((Player) playerObject).getStaminaFactor();
     }
 
     public boolean enter(Terrain terrain){
@@ -92,4 +106,8 @@ public class Player {
         return staminaFactor;
     }
 
+    @Override
+    public String toString(){
+        return " Food Supply: " + foodSupply + "\n Water Supply: " + waterSupply + "\n Stamina Supply: " + staminaSupply;
+    }
 }

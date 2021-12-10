@@ -10,4 +10,9 @@ public class Forest extends Terrain {
     public double getStaminaCost(){
         return staminaCost;
     }
+
+    @Override
+    public String toString(){
+        return "Forest";
+    }
 }

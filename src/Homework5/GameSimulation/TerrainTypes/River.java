@@ -10,4 +10,9 @@ public class River extends Terrain{
     public double getWaterCost() {
         return waterCost;
     }
+
+    @Override
+    public String toString(){
+        return "River";
+    }
 }

@@ -16,5 +16,9 @@ public class Sand extends Terrain{
         return staminaCost;
     }
 
+    @Override
+    public String toString(){
+        return "Sand";
+    }
 
 }

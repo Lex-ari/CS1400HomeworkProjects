@@ -4,7 +4,7 @@ import Homework5.GameSimulation.PlayerTypes.Player;
 
 public class TwoBrainCellsBrain extends Brain{
     @Override
-    public void move(){
+    public void move() throws Exception {
         travelToTerrain("E");
     }
 }
