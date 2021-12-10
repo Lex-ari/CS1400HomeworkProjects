@@ -1,5 +1,7 @@
 package Homework5.GameSimulation;
 
+import Homework5.GameSimulation.GameControl.Brain;
+import Homework5.GameSimulation.GameControl.TwoBrainCellsBrain;
 import Homework5.GameSimulation.TerrainTypes.River;
 import Homework5.GameSimulation.TerrainTypes.Terrain;
 

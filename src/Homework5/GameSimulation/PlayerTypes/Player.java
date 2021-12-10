@@ -1,6 +1,6 @@
 package Homework5.GameSimulation.PlayerTypes;
 
-import Homework5.GameSimulation.TerrainTypes.Terrain;
+import Homework5.GameSimulation.TerrainTypes.*;
 
 public class Player {
 
