@@ -9,10 +9,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Map gameMap = new Map();
         gameMap.initializeMap();
-        Brain firstPlayer = new TwoBrainCellsBrain();
+        Brain firstPlayer = new ComplexBrain();
         firstPlayer.setPlayerType(new Player());
         firstPlayer.setMap(gameMap);
-        System.out.println(firstPlayer.toString());
+        System.out.println(firstPlayer);
 
         //firstPlayer.move();
         //System.out.println(firstPlayer.toString());
@@ -22,7 +22,7 @@ public class Main {
                 firstPlayer.move();
             }
             catch (Exception e){
-                // Do nothing.
+                System.out.println(e);
             }
         }
     }

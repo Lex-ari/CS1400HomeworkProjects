@@ -1,7 +1,6 @@
 package Homework5.GameSimulation.GameControl;
 
 import Homework5.GameSimulation.PlayerTypes.*;
-import Homework5.GameSimulation.TerrainTypes.*;
 
 public class Brain { // specifically 0 iq brain
 
@@ -11,6 +10,9 @@ public class Brain { // specifically 0 iq brain
     private boolean isAlive = true;
     private boolean winner = false;
     private Map map;
+    private String name;
+
+    private boolean[][] trail;
 
     public Brain(){
     }
@@ -18,7 +20,13 @@ public class Brain { // specifically 0 iq brain
     public void setMap(Map map){
         this.map = map;
         yCood = map.getStartingPosition();
+        trail = new boolean[map.getMapHeight()][getMap().getMapLength()]; // default values are false
     }
+
+    public boolean getValueAtTrail(int y, int x){
+        return trail[y][x];
+    }
+
 
     public Map getMap(){
         return map;
@@ -32,6 +40,14 @@ public class Brain { // specifically 0 iq brain
         return new Player(playerType);
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
     public int getXCood(){
         return xCood;
     }
@@ -42,6 +58,7 @@ public class Brain { // specifically 0 iq brain
 
     public void move() throws Exception { // Strategy goes here
         //This is empty. Nobody plays the "brain" class.
+        throw new Exception("Attempted to play Brain Superclass - Not a playable class");
     }
 
     protected void travelToTerrain(String heading) throws Exception { // No strategy, only move + dead check
@@ -56,6 +73,7 @@ public class Brain { // specifically 0 iq brain
                 default -> throw new IllegalArgumentException("Obtained value is not a heading!");
             }
 
+            trail[yCood][xCood] = true;
             yCood += yDelta;
             xCood += xDelta;
 

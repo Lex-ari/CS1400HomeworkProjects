@@ -39,4 +39,8 @@ public class Map {
         return map.length / 2;
     }
 
+    public int getMapHeight(){
+        return map.length;
+    }
+
 }
