@@ -5,7 +5,7 @@ import Homework5.GameSimulation.PlayerTypes.*;
 public class Brain { // specifically 0 iq brain
 
     private Player playerType;
-    private int yCood;
+    private int yCood = Map.getStartingPosition();
     private int xCood;
     private boolean isAlive = true;
     private boolean winner = false;
@@ -17,12 +17,12 @@ public class Brain { // specifically 0 iq brain
 
     public Brain(){
         numPlayers++;
-        name = "COM " + numPlayers;
+        name = numPlayers + "COM";
     }
 
     public Brain(Player playerType) throws Exception {
         numPlayers++;
-        name = "COM " + numPlayers;
+        name = numPlayers + "COM";
         this.playerType = new Player(playerType);
     }
 

@@ -19,16 +19,25 @@ public class Map {
     }
 
     private static Terrain getRandomTerrain(){
-        int randomTerrainNumber = (int)(Math.random() * 4);
+        int randomTerrainNumber = (int)(Math.random() * 100);
         Terrain returnTerrain;
-        switch (randomTerrainNumber){
-            case 0 -> returnTerrain = new Forest();
-            case 1 -> returnTerrain = new Grass();
-            case 2 -> returnTerrain = new River();
-            case 3 -> returnTerrain = new Sand();
-            default -> returnTerrain = new Terrain();
+
+        if (randomTerrainNumber > 95){
+            return new ChanceSquare();
         }
-        return returnTerrain;
+        if (randomTerrainNumber > 90){
+            return new Snow();
+        }
+        if (randomTerrainNumber > 80){
+            return new Sand();
+        }
+        if (randomTerrainNumber > 60){
+            return new River();
+        }
+        if (randomTerrainNumber > 40){
+            return new Forest();
+        }
+        return new Grass();
     }
 
     public static int getMapLength(){

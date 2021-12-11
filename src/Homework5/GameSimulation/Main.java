@@ -12,10 +12,12 @@ public class Main {
         boolean activeGame = true;
         boolean reachedEnd = false;
         Map.initializeMap();
+        MapPrinter.initializeMapPrinter();
         Brain firstPlayer = new ComplexBrain(new Player());
         Brain secondPlayer = new OmegaBrain(new BornRunner());
+        Brain thirdPlayer = new TwoBrainCellsBrain(new NeedsAGallonPerDay());
 
-        Brain[] players = {firstPlayer, secondPlayer};
+        Brain[] players = {firstPlayer, secondPlayer, thirdPlayer};
 
         Scanner scanner = new Scanner(System.in);
 
@@ -38,6 +40,7 @@ public class Main {
                     System.out.println(players[x] + "\n");
                 }
             }
+            MapPrinter.printMap(players);
             System.out.println("Please enter any key in the terminal to advance 1 turn");
             if(scanner.hasNextLine()){
                 turn++;
@@ -60,7 +63,7 @@ public class Main {
             }
         }
 
-        System.out.println(winner.getName() + " has won the game with a travelled distance of " + winner.getXCood());
+        System.out.println(winner.getName() + " has won the game with a distance of " + winner.getXCood() + " from the start of the map");
         System.out.println(winner);
         System.out.println();
         System.out.println("Thank you for playing");

@@ -15,4 +15,9 @@ public class Forest extends Terrain {
     public String toString(){
         return "Forest";
     }
+
+    @Override
+    public double getFoodCost(){
+        return foodCost;
+    }
 }
