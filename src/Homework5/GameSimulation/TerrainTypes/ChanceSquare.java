@@ -1,5 +1,12 @@
 package Homework5.GameSimulation.TerrainTypes;
 
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
+
 public class ChanceSquare extends Terrain{
     private double foodCost = -3.0;
     private double waterCost = -3.0;

@@ -3,6 +3,13 @@ package Homework5.GameSimulation.GameControl;
 import Homework5.GameSimulation.PlayerTypes.*;
 import Homework5.GameSimulation.TerrainTypes.*;
 
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
+
 public class MapPrinter {
 
     private static String[][] mapPrint;

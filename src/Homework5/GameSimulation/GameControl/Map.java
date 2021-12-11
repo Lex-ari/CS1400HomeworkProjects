@@ -1,6 +1,13 @@
 package Homework5.GameSimulation.GameControl;
 import Homework5.GameSimulation.TerrainTypes.*;
 
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
+
 public class Map {
     private static Terrain[][] map = new Terrain[10][50];//row, col bc alex is bruh
 

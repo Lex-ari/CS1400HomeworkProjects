@@ -2,6 +2,13 @@ package Homework5.GameSimulation.GameControl;
 
 import Homework5.GameSimulation.PlayerTypes.*;
 
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
+
 public class Brain { // specifically 0 iq brain
 
     private Player playerType;

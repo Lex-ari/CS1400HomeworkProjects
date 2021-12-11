@@ -3,12 +3,25 @@ package Homework5.GameSimulation;
 import Homework5.GameSimulation.GameControl.*;
 import Homework5.GameSimulation.PlayerTypes.*;
 
-import java.util.List;
 import java.util.Scanner;
+
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        /*
+        Notes: Please initialize the map first, and then the map printer before any players.
+
+        To add a new player, simply add: Brain "playerName" = new "BrainType"(new "PlayerType"());
+        Also add them under Brain[] players list so that they are counted in the move terms
+         */
+
         boolean activeGame = true;
         boolean reachedEnd = false;
         Map.initializeMap();

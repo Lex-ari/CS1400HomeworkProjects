@@ -1,5 +1,12 @@
 package Homework5.GameSimulation.PlayerTypes;
 
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
+
 public class BornRunner extends Player{
     private double staminaFactor = 0.1;
     private double waterFactor = 0.7;

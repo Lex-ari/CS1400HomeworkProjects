@@ -4,7 +4,12 @@ import Homework4.Stats;
 import Homework4.Status;
 import Homework5.GameSimulation.TerrainTypes.*;
 
-import java.util.Set;
+/*
+Code by Alex Mariano
+CS1400
+Professor David Johannsen
+Thank you for my first semester!
+ */
 
 public class Player {
 
