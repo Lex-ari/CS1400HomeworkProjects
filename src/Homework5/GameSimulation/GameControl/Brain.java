@@ -11,6 +11,7 @@ public class Brain { // specifically 0 iq brain
     private boolean winner = false;
     private String name;
     private static int numPlayers = 0;
+    private String statusMessage = "Alive";
 
     private boolean[][] trail = new boolean[Map.getMapHeight()][Map.getMapLength()];
 
@@ -79,13 +80,8 @@ public class Brain { // specifically 0 iq brain
             xCood += xDelta;
 
             isAlive = playerType.enter(Map.getTerrainAtCoordinates(yCood, xCood));
-
-            if (!isAlive) { // Alert the Main process that the player died.
-
-                System.out.println("\n####################\n####################\n");
-                System.out.println(name + " has died. Following report:");
-                System.out.println(this);
-                System.out.println("\n####################\n####################\n");
+            if (!isAlive){
+                statusMessage = "DEAD";
             }
             checkForWin();
         }
@@ -95,13 +91,20 @@ public class Brain { // specifically 0 iq brain
         int mapLength = Map.getMapLength();
         if(xCood >= mapLength - 1){
             winner = true;
-            System.out.println("This player won!"); // also not so specific, will change.
         }
+    }
+
+    public boolean isAlive(){
+        return isAlive;
+    }
+
+    public boolean isWinner() {
+        return winner;
     }
 
     @Override
     public String toString(){
-        return "Name: " + name + "\nBrain type: " + getBrainType() + "\nPlayerType: " + playerType.toString() + "\nPosition: Y" + yCood + " X" + xCood + "\nOn Terrain: " + Map.getTerrainAtCoordinates(yCood, xCood).toString();
+        return "Name: " + name + "\nStatus: " + statusMessage + "\nBrain type: " + getBrainType() + "\nPlayerType: " + playerType.toString() + "\nPosition: Y" + yCood + " X" + xCood + "\nOn Terrain: " + Map.getTerrainAtCoordinates(yCood, xCood).toString();
     }
 
 
