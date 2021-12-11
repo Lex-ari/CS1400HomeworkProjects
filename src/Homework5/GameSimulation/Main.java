@@ -1,25 +1,19 @@
 package Homework5.GameSimulation;
 
 import Homework5.GameSimulation.GameControl.*;
-import Homework5.GameSimulation.PlayerTypes.Player;
-import Homework5.GameSimulation.TerrainTypes.*;
+import Homework5.GameSimulation.PlayerTypes.*;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Map gameMap = new Map();
-        gameMap.initializeMap();
-        Brain firstPlayer = new ComplexBrain();
-        firstPlayer.setPlayerType(new Player());
-        firstPlayer.setMap(gameMap);
-        System.out.println(firstPlayer);
-
-        //firstPlayer.move();
-        //System.out.println(firstPlayer.toString());
+        Map.initializeMap();
+        Brain firstPlayer = new ComplexBrain(new Player());
+        Brain secondPlayer = new OmegaBrain(new BornRunner());
 
         for (int a = 0; a < 55; a++){
             try{
                 firstPlayer.move();
+                secondPlayer.move();
             }
             catch (Exception e){
                 System.out.println(e);

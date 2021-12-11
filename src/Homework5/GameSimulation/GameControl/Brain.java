@@ -9,27 +9,28 @@ public class Brain { // specifically 0 iq brain
     private int xCood;
     private boolean isAlive = true;
     private boolean winner = false;
-    private Map map;
     private String name;
+    private static int numPlayers = 0;
 
-    private boolean[][] trail;
+    private boolean[][] trail = new boolean[Map.getMapHeight()][Map.getMapLength()];
 
     public Brain(){
+        numPlayers++;
+        name = "COM " + numPlayers;
     }
 
-    public void setMap(Map map){
-        this.map = map;
-        yCood = map.getStartingPosition();
-        trail = new boolean[map.getMapHeight()][getMap().getMapLength()]; // default values are false
+    public Brain(Player playerType) throws Exception {
+        numPlayers++;
+        name = "COM " + numPlayers;
+        this.playerType = new Player(playerType);
+    }
+
+    public String getBrainType(){
+        return "Brain";
     }
 
     public boolean getValueAtTrail(int y, int x){
         return trail[y][x];
-    }
-
-
-    public Map getMap(){
-        return map;
     }
 
     public void setPlayerType(Player playerType) throws Exception {
@@ -77,20 +78,21 @@ public class Brain { // specifically 0 iq brain
             yCood += yDelta;
             xCood += xDelta;
 
-            isAlive = playerType.enter(map.getTerrainAtCoordinates(yCood, xCood));
+            isAlive = playerType.enter(Map.getTerrainAtCoordinates(yCood, xCood));
 
-            if (!isAlive) {
-                System.out.println("This player died"); // not so specific, will change.
+            if (!isAlive) { // Alert the Main process that the player died.
+
+                System.out.println("\n####################\n####################\n");
+                System.out.println(name + " has died. Following report:");
+                System.out.println(this);
+                System.out.println("\n####################\n####################\n");
             }
             checkForWin();
-            System.out.println(this);
-        } else {
-            throw new Exception("This player is dead");
         }
     }
 
     private void checkForWin(){
-        int mapLength = map.getMapLength();
+        int mapLength = Map.getMapLength();
         if(xCood >= mapLength - 1){
             winner = true;
             System.out.println("This player won!"); // also not so specific, will change.
@@ -99,7 +101,7 @@ public class Brain { // specifically 0 iq brain
 
     @Override
     public String toString(){
-        return "PlayerType: \n" + playerType.toString() + "\nPosition: Y" + yCood + " X" + xCood + "\nOn Terrain: " + map.getTerrainAtCoordinates(yCood, xCood).toString();
+        return "Name: " + name + "\nBrain type: " + getBrainType() + "\nPlayerType: " + playerType.toString() + "\nPosition: Y" + yCood + " X" + xCood + "\nOn Terrain: " + Map.getTerrainAtCoordinates(yCood, xCood).toString();
     }
 
 

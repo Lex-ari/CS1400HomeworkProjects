@@ -5,6 +5,11 @@ import Homework5.GameSimulation.PlayerTypes.Player;
 public class TwoBrainCellsBrain extends Brain{
     @Override
     public void move() throws Exception {
-        travelToTerrain("E");
+        travelToTerrain("E"); // no think only move
+    }
+
+    @Override
+    public String getBrainType(){
+        return "TwoBrainCellsBrain";
     }
 }

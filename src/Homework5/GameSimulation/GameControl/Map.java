@@ -31,15 +31,15 @@ public class Map {
         return returnTerrain;
     }
 
-    public int getMapLength(){
+    public static int getMapLength(){
         return map[0].length;
     }
 
-    public int getStartingPosition(){
+    public static int getStartingPosition(){
         return map.length / 2;
     }
 
-    public int getMapHeight(){
+    public static int getMapHeight(){
         return map.length;
     }
 

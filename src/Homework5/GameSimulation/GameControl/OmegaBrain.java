@@ -4,13 +4,18 @@ import Homework5.GameSimulation.PlayerTypes.Player;
 
 public class OmegaBrain extends Brain{
 
+    public OmegaBrain(Player player) throws Exception {
+        setPlayerType(player);
+    }
+
+    @Override
+    public String getBrainType(){
+        return "OmegaBrain";
+    }
+
     @Override
     public void move() throws Exception {
-        //double trialNGrade = trialN();
-        double trialEGrade = trialE();
-        //double trialWGrade = trialS();
-
-        double[] trialResults = {trialNGrade, trialEGrade, trialWGrade};
+        double[] trialResults = {trialNE(), trialEN(), trialE(), trialSE(), trialES()};
 
         double maxVal = -100;
         int maxValPosition = 2; // this is the default,  in case all the paths lead the player to death.
@@ -22,10 +27,27 @@ public class OmegaBrain extends Brain{
         }
 
         switch (maxValPosition){
-            case 0 -> travelToTerrain("N");
-            case 1 -> travelToTerrain("E");
-            case 2 -> travelToTerrain("S");
-            default -> throw new Exception("Max Value Position Does Not Match With Any Config");
+            case 0:
+                travelToTerrain("N");
+                travelToTerrain("E");
+                break;
+            case 1:
+                travelToTerrain("E");
+                travelToTerrain("N");
+                break;
+            case 2:
+                travelToTerrain("E");
+                break;
+            case 3:
+                travelToTerrain("S");
+                travelToTerrain("E");
+                break;
+            case 4:
+                travelToTerrain("E");
+                travelToTerrain("S");
+                break;
+            default:
+                throw new Exception("Max Value Position Does Not Match With Any Config");
         }
         //Do an array here, and then act according to position on array.
 
@@ -33,6 +55,11 @@ public class OmegaBrain extends Brain{
         //Prioritize balance over most supply?
     }
 
+    /* How the trials work
+    Essentially the brain is playing an imaginary player, that will travel to the coordinates in order to get their output
+    The brain decides which is the best considering the most positive out of all the values.
+
+     */
     private double trialNE() throws Exception { // be sure to ensure out of bounds exception
         try {
             if (getValueAtTrail(getYCood() + 1, getXCood()) && getValueAtTrail(getYCood() + 1, getXCood()+1)){
@@ -40,8 +67,8 @@ public class OmegaBrain extends Brain{
                 // this also happens if the "search" goes out of the map
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() + 1, getXCood()));
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() + 1, getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() + 1, getXCood()));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() + 1, getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){ // These exceptions also handle array out of bounds on both map and trail
             return -100;
@@ -54,7 +81,7 @@ public class OmegaBrain extends Brain{
                 return -100; // The player had already passed this section. No going back!
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood(), getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood(), getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){
             return -100;
@@ -68,8 +95,8 @@ public class OmegaBrain extends Brain{
                 // this also happens if the "search" goes out of the map
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood(), getXCood() + 1));
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() + 1, getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood(), getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() + 1, getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){ // These exceptions also handle array out of bounds on both map and trail
             return -100;
@@ -83,8 +110,8 @@ public class OmegaBrain extends Brain{
                 // this also happens if the "search" goes out of the map
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() - 1, getXCood()));
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() - 1, getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() - 1, getXCood()));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() - 1, getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){ // These exceptions also handle array out of bounds on both map and trail
             return -100;
@@ -97,8 +124,8 @@ public class OmegaBrain extends Brain{
                 // this also happens if the "search" goes out of the map
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood(), getXCood() + 1));
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() - 1, getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood(), getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() - 1, getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){ // These exceptions also handle array out of bounds on both map and trail
             return -100;

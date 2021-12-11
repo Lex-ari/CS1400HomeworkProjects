@@ -4,13 +4,18 @@ import Homework5.GameSimulation.PlayerTypes.Player;
 
 public class ComplexBrain extends Brain{
 
+    public ComplexBrain(Player player) throws Exception {
+        setPlayerType(player);
+    }
+
+    @Override
+    public String getBrainType(){
+        return "ComplexBrain";
+    }
+
     @Override
     public void move() throws Exception {
-        double trialNGrade = trialN();
-        double trialEGrade = trialE();
-        double trialWGrade = trialS();
-
-        double[] trialResults = {trialNGrade, trialEGrade, trialWGrade};
+        double[] trialResults = {trialN(), trialE(), trialS()};
 
         double maxVal = -100;
         int maxValPosition = 2; // this is the default,  in case all the paths lead the player to death.
@@ -39,7 +44,7 @@ public class ComplexBrain extends Brain{
                 return -100; // The player had already passed this section. No going back!
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() + 1, getXCood()));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() + 1, getXCood()));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){ // These exceptions also handle array out of bounds on both map and trail
             return -100;
@@ -52,7 +57,7 @@ public class ComplexBrain extends Brain{
                 return -100; // The player had already passed this section. No going back!
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood(), getXCood() + 1));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood(), getXCood() + 1));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){
             return -100;
@@ -65,7 +70,7 @@ public class ComplexBrain extends Brain{
                 return -100; // The player had already passed this section. No going back!
             }
             Player imaginaryPlayer = new Player(getPlayerType());
-            imaginaryPlayer.enter(getMap().getTerrainAtCoordinates(getYCood() - 1, getXCood()));
+            imaginaryPlayer.enter(Map.getTerrainAtCoordinates(getYCood() - 1, getXCood()));
             return imaginaryPlayer.getFoodSupply() + imaginaryPlayer.getWaterSupply() + imaginaryPlayer.getStaminaSupply();
         } catch (Exception e){
             return -100;

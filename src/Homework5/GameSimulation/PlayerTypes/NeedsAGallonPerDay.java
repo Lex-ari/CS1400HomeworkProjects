@@ -8,4 +8,9 @@ public class NeedsAGallonPerDay extends Player{
     public double getWaterFactor(){
         return waterFactor;
     }
+
+    @Override
+    public String getPlayerType(){
+        return "NeedsAGallonPerDay";
+    }
 }

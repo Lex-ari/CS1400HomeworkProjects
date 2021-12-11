@@ -4,6 +4,8 @@ import Homework4.Stats;
 import Homework4.Status;
 import Homework5.GameSimulation.TerrainTypes.*;
 
+import java.util.Set;
+
 public class Player {
 
     private double foodSupply;
@@ -25,9 +27,14 @@ public class Player {
         staminaSupply = 20;
     }
 
+    public String getPlayerType(){
+        return "Player";
+    }
+
     public Player(Object playerObject) throws Exception { // copy constructor
-        if (playerObject == null || Homework5.GameSimulation.PlayerTypes.Player.class != playerObject.getClass()){
-            throw new Exception("Object in player copy constructor is not a player object");
+
+        if (playerObject == null || !(super.getClass().isAssignableFrom(playerObject.getClass()))){
+            throw new Exception("Object in player copy constructor is not a player or player subclass!");
         }
         this.foodSupply = ((Player) playerObject).getFoodSupply();
         this.foodFactor = ((Player) playerObject).getFoodFactor();
@@ -108,6 +115,6 @@ public class Player {
 
     @Override
     public String toString(){
-        return " Food Supply: " + foodSupply + "\n Water Supply: " + waterSupply + "\n Stamina Supply: " + staminaSupply;
+        return getPlayerType() + "\n Food Supply: " + foodSupply + "\n Water Supply: " + waterSupply + "\n Stamina Supply: " + staminaSupply;
     }
 }

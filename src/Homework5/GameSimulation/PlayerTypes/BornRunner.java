@@ -7,4 +7,9 @@ public class BornRunner extends Player{
     public double getStaminaFactor(){
         return staminaSupply;
     }
+
+    @Override
+    public String getPlayerType(){
+        return "BornRunner";
+    }
 }
